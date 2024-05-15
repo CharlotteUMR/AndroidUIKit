@@ -11,9 +11,11 @@
         android:theme="@style/Theme.AndroidUIKit"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AndroidUIKit">
+            android:name=".examples.ArrowDrawableExampleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".entrance.EntranceActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

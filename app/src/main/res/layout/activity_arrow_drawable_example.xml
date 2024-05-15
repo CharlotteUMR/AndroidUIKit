@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".examples.ArrowDrawableExampleActivity"
+    tools:ignore="HardcodedText">
+
+    <View
+        android:id="@+id/arrow_drawable_example_activity_view_preview"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/arrow_drawable_example_activity_btn_remove" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/arrow_drawable_example_activity_gl_add"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.33" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/arrow_drawable_example_activity_gl_remove"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.66" />
+
+    <Button
+        android:id="@+id/arrow_drawable_example_activity_btn_add_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加下箭头"
+        app:layout_constraintStart_toStartOf="@id/arrow_drawable_example_activity_gl_add"
+        app:layout_constraintEnd_toEndOf="@id/arrow_drawable_example_activity_gl_add"
+        app:layout_constraintTop_toBottomOf="@id/arrow_drawable_example_activity_btn_add_left"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button
+        android:id="@+id/arrow_drawable_example_activity_btn_add_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加左箭头"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toStartOf="@id/arrow_drawable_example_activity_gl_add"
+        app:layout_constraintTop_toBottomOf="@id/arrow_drawable_example_activity_btn_add_up"
+        app:layout_constraintBottom_toTopOf="@id/arrow_drawable_example_activity_btn_add_down" />
+
+    <Button
+        android:id="@+id/arrow_drawable_example_activity_btn_add_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加右箭头"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toEndOf="@id/arrow_drawable_example_activity_gl_add"
+        app:layout_constraintTop_toBottomOf="@id/arrow_drawable_example_activity_btn_add_up"
+        app:layout_constraintBottom_toTopOf="@id/arrow_drawable_example_activity_btn_add_down" />
+
+    <Button
+        android:id="@+id/arrow_drawable_example_activity_btn_add_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加上箭头"
+        app:layout_constraintStart_toStartOf="@id/arrow_drawable_example_activity_gl_add"
+        app:layout_constraintEnd_toEndOf="@id/arrow_drawable_example_activity_gl_add"
+        app:layout_constraintTop_toBottomOf="@id/arrow_drawable_example_activity_view_preview"
+        app:layout_constraintBottom_toTopOf="@id/arrow_drawable_example_activity_btn_add_left"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/arrow_drawable_example_activity_btn_remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="删除箭头"
+        app:layout_constraintStart_toEndOf="@id/arrow_drawable_example_activity_gl_remove"
+        app:layout_constraintTop_toBottomOf="@id/arrow_drawable_example_activity_view_preview"
+        app:layout_constraintBottom_toTopOf="@id/arrow_drawable_example_activity_btn_clear" />
+
+    <Button
+        android:id="@+id/arrow_drawable_example_activity_btn_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="清空箭头"
+        app:layout_constraintStart_toEndOf="@id/arrow_drawable_example_activity_gl_remove"
+        app:layout_constraintTop_toBottomOf="@id/arrow_drawable_example_activity_btn_remove"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

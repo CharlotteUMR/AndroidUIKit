@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AndroidUIKit</string>
+    <string name="title_activity_entrance">EntranceActivity</string>
 </resources>
