@@ -42,7 +42,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "com.github.charlotteumr"
             artifactId = "androiduikit"
-            version = "1.0.0"
+            version = "1.0"
 
             afterEvaluate {
                 from(components["release"])
