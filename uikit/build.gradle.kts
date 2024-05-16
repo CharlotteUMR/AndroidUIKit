@@ -40,10 +40,6 @@ dependencies {
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "com.github.charlotteumr"
-            artifactId = "androiduikit"
-            version = "1.0"
-
             afterEvaluate {
                 from(components["release"])
             }
