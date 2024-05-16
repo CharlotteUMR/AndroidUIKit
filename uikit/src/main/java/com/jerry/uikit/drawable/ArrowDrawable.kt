@@ -42,6 +42,11 @@ class ArrowDrawable(arrowList: List<Arrow>) : Drawable() {
      */
     private var alpha: Float = 1F
 
+    /**
+     * 路径构建器
+     */
+    private val pathBuilder = PathUtil.getPathBuilder()
+
     constructor(vararg arrows: Arrow) : this(arrows.toList())
 
     init {
@@ -97,7 +102,6 @@ class ArrowDrawable(arrowList: List<Arrow>) : Drawable() {
     }
 
     override fun draw(canvas: Canvas) {
-        val pathBuilder = PathUtil.getPathBuilder()
         arrowList.forEach {
             // 设置画笔属性
             paint.color = it.color.alpha(alpha)
