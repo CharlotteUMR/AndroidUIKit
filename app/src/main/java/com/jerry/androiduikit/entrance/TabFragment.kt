@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView.LayoutParams
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.google.android.material.textview.MaterialTextView
 import com.jerry.androiduikit.databinding.FragmentTabBinding
-import com.jerry.uikit.drawable.ArrowDrawable
+import com.jerry.uikit.drawables.ArrowDrawable
 import com.jerry.uikit.extensions.dpToPx
 import com.jerry.uikit.utils.RectUtil
 import java.io.Serializable

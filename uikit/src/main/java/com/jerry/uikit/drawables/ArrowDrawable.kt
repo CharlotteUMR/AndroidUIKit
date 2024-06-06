@@ -1,4 +1,4 @@
-package com.jerry.uikit.drawable
+package com.jerry.uikit.drawables
 
 import android.graphics.*
 import android.graphics.drawable.Drawable
@@ -6,10 +6,10 @@ import androidx.annotation.ColorInt
 import androidx.annotation.IntDef
 import androidx.annotation.MainThread
 import androidx.annotation.Px
-import com.jerry.uikit.drawable.ArrowDrawable.Direction.Companion.DIRECTION_BOTTOM
-import com.jerry.uikit.drawable.ArrowDrawable.Direction.Companion.DIRECTION_LEFT
-import com.jerry.uikit.drawable.ArrowDrawable.Direction.Companion.DIRECTION_RIGHT
-import com.jerry.uikit.drawable.ArrowDrawable.Direction.Companion.DIRECTION_TOP
+import com.jerry.uikit.drawables.ArrowDrawable.Direction.Companion.DIRECTION_BOTTOM
+import com.jerry.uikit.drawables.ArrowDrawable.Direction.Companion.DIRECTION_LEFT
+import com.jerry.uikit.drawables.ArrowDrawable.Direction.Companion.DIRECTION_RIGHT
+import com.jerry.uikit.drawables.ArrowDrawable.Direction.Companion.DIRECTION_TOP
 import com.jerry.uikit.extensions.alpha
 import com.jerry.uikit.extensions.clamp
 import com.jerry.uikit.utils.PathUtil

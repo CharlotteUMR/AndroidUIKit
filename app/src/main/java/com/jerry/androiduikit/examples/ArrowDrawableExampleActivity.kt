@@ -9,9 +9,9 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.jerry.androiduikit.R
 import com.jerry.androiduikit.databinding.ActivityArrowDrawableExampleBinding
-import com.jerry.uikit.drawable.ArrowDrawable
-import com.jerry.uikit.drawable.ArrowDrawable.Arrow
-import com.jerry.uikit.drawable.ArrowDrawable.Direction
+import com.jerry.uikit.drawables.ArrowDrawable
+import com.jerry.uikit.drawables.ArrowDrawable.Arrow
+import com.jerry.uikit.drawables.ArrowDrawable.Direction
 import com.jerry.uikit.utils.RectUtil
 
 class ArrowDrawableExampleActivity : AppCompatActivity() {
