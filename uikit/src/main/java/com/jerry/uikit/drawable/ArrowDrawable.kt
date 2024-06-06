@@ -17,7 +17,7 @@ import com.jerry.uikit.utils.PathUtil
 /**
  * 箭头[Drawable]
  *
- * [builder] 构造器[Builder]
+ * [arrowList] 箭头数组
  *
  * @author p_jruixu
  */
