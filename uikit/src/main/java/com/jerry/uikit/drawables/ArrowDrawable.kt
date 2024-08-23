@@ -10,7 +10,6 @@ import com.jerry.uikit.drawables.ArrowDrawable.Direction.Companion.DIRECTION_BOT
 import com.jerry.uikit.drawables.ArrowDrawable.Direction.Companion.DIRECTION_LEFT
 import com.jerry.uikit.drawables.ArrowDrawable.Direction.Companion.DIRECTION_RIGHT
 import com.jerry.uikit.drawables.ArrowDrawable.Direction.Companion.DIRECTION_TOP
-import com.jerry.uikit.extensions.alpha
 import com.jerry.uikit.extensions.clamp
 import com.jerry.uikit.utils.PathUtil
 
@@ -19,7 +18,7 @@ import com.jerry.uikit.utils.PathUtil
  *
  * [arrowList] 箭头数组
  *
- * @author p_jruixu
+ * @author Jerry
  */
 class ArrowDrawable(arrowList: List<Arrow>) : Drawable() {
     /**
@@ -31,6 +30,11 @@ class ArrowDrawable(arrowList: List<Arrow>) : Drawable() {
      * 画笔
      */
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+    /**
+     * 覆盖颜色
+     */
+    private var overrideColor: Int? = null
 
     /**
      * 箭头主体区域
@@ -75,8 +79,18 @@ class ArrowDrawable(arrowList: List<Arrow>) : Drawable() {
 
     @MainThread
     fun setColor(color: Int) {
-        arrowList.forEach { it.color = color }
-        invalidateSelf()
+        if (overrideColor != color) {
+            overrideColor = color
+            invalidateSelf()
+        }
+    }
+
+    @MainThread
+    fun removeColor() {
+        if (overrideColor != null) {
+            overrideColor = null
+            invalidateSelf()
+        }
     }
 
     /**
@@ -101,7 +115,7 @@ class ArrowDrawable(arrowList: List<Arrow>) : Drawable() {
     override fun draw(canvas: Canvas) {
         arrowList.forEach {
             // 设置画笔属性
-            paint.color = it.color
+            paint.color = overrideColor ?: it.color
             paint.style = Paint.Style.STROKE
             paint.strokeWidth = it.strokeWidthPx.toFloat()
             paint.strokeCap = it.strokeCap
@@ -176,12 +190,12 @@ class ArrowDrawable(arrowList: List<Arrow>) : Drawable() {
      * [strokeJoin] 线条连接[Paint.Join]
      */
     data class Arrow @JvmOverloads constructor(
-        @ColorInt var color: Int,
-        @Px var strokeWidthPx: Int,
-        @Direction var direction: Int,
-        var bounds: RectF,
-        var strokeCap: Paint.Cap = Paint.Cap.ROUND,
-        var strokeJoin: Paint.Join = Paint.Join.ROUND
+        @ColorInt val color: Int,
+        @Px val strokeWidthPx: Int,
+        @Direction val direction: Int,
+        val bounds: RectF,
+        val strokeCap: Paint.Cap = Paint.Cap.ROUND,
+        val strokeJoin: Paint.Join = Paint.Join.ROUND
     )
 
     /**

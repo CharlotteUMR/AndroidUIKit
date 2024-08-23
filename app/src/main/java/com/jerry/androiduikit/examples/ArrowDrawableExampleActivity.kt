@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.graphics.RectF
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.jerry.androiduikit.R
 import com.jerry.androiduikit.databinding.ActivityArrowDrawableExampleBinding
 import com.jerry.uikit.drawables.ArrowDrawable
 
@@ -17,8 +16,6 @@ class ArrowDrawableExampleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_arrow_drawable_example)
-
         binding = ActivityArrowDrawableExampleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
