@@ -8,11 +8,15 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.jerry.androiduikit.databinding.ActivityEntranceBinding
 import com.jerry.androiduikit.examples.ArrowDrawableExampleActivity
+import com.jerry.androiduikit.examples.CrossDrawableExampleActivity
 
 class EntranceActivity : AppCompatActivity() {
     companion object {
         val TAB_TITLE_ARRAY = arrayOf("Drawable", "View")
-        val DRAWABLE_DATA_ARRAY = arrayListOf(TabFragment.ItemData("ArrowDrawable", ArrowDrawableExampleActivity::class.java))
+        val DRAWABLE_DATA_ARRAY = arrayListOf(
+            TabFragment.ItemData("ArrowDrawable", ArrowDrawableExampleActivity::class.java),
+            TabFragment.ItemData("CrossDrawable", CrossDrawableExampleActivity::class.java),
+        )
         val VIEW_ARRAY = arrayOf("ExcludePaddingTextView")
     }
 

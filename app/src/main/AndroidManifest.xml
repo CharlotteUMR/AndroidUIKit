@@ -14,6 +14,9 @@
             android:name=".examples.ArrowDrawableExampleActivity"
             android:exported="false" />
         <activity
+            android:name=".examples.CrossDrawableExampleActivity"
+            android:exported="false" />
+        <activity
             android:name=".entrance.EntranceActivity"
             android:exported="true">
             <intent-filter>
