@@ -38,11 +38,6 @@ class ArrowDrawable(arrowList: List<Arrow>) : Drawable() {
     private val arrowRectF = RectF()
 
     /**
-     * 不透明度百分比
-     */
-    private var alpha: Float = 1F
-
-    /**
      * 路径构建器
      */
     private val pathBuilder = PathUtil.getPathBuilder()
@@ -88,11 +83,13 @@ class ArrowDrawable(arrowList: List<Arrow>) : Drawable() {
      * 对箭头颜色设置透明度（在[Arrow.color]基础上设置）
      */
     override fun setAlpha(alpha: Int) {
-        this.alpha = (alpha / 255F).clamp(0F, 1F)
-        invalidateSelf()
+        if (paint.alpha != alpha) {
+            paint.alpha = alpha
+            invalidateSelf()
+        }
     }
 
-    override fun getAlpha() = (alpha * 255).toInt()
+    override fun getAlpha() = paint.alpha
 
     override fun setColorFilter(colorFilter: ColorFilter?) {
         if (paint.colorFilter != colorFilter) {
@@ -104,7 +101,7 @@ class ArrowDrawable(arrowList: List<Arrow>) : Drawable() {
     override fun draw(canvas: Canvas) {
         arrowList.forEach {
             // 设置画笔属性
-            paint.color = it.color.alpha(alpha)
+            paint.color = it.color
             paint.style = Paint.Style.STROKE
             paint.strokeWidth = it.strokeWidthPx.toFloat()
             paint.strokeCap = it.strokeCap
