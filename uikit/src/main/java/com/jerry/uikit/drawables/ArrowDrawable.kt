@@ -55,23 +55,20 @@ class ArrowDrawable(arrowList: List<Arrow>) : Drawable() {
         }
     }
 
-    fun getArrowList(): List<Arrow> = arrowList
-
     @MainThread
-    fun addArrow(arrows: List<Arrow>) {
-        arrowList.addAll(arrows)
+    fun addArrow(arrow: Arrow) {
+        arrowList.add(arrow)
         invalidateSelf()
     }
 
     @MainThread
-    fun removeArrow(index: Int = arrowList.size - 1) {
-        if (arrowList.isEmpty()) return
-        arrowList.removeAt(index.clamp(0, arrowList.size - 1))
+    fun removeArrow(index: Int) {
+        arrowList.removeAt(index)
         invalidateSelf()
     }
 
     @MainThread
-    fun removeAllArrow() {
+    fun removeAllArrows() {
         if (arrowList.isEmpty()) return
         arrowList.clear()
         invalidateSelf()
@@ -93,9 +90,6 @@ class ArrowDrawable(arrowList: List<Arrow>) : Drawable() {
         }
     }
 
-    /**
-     * 对箭头颜色设置透明度（在[Arrow.color]基础上设置）
-     */
     override fun setAlpha(alpha: Int) {
         if (paint.alpha != alpha) {
             paint.alpha = alpha
@@ -109,6 +103,28 @@ class ArrowDrawable(arrowList: List<Arrow>) : Drawable() {
         if (paint.colorFilter != colorFilter) {
             paint.colorFilter = colorFilter
             invalidateSelf()
+        }
+    }
+
+    override fun getColorFilter(): ColorFilter? = paint.colorFilter
+
+    override fun getOpacity() = PixelFormat.TRANSLUCENT
+
+    override fun getIntrinsicWidth(): Int {
+        val bounds = bounds
+        return if (bounds.isEmpty) {
+            super.getIntrinsicWidth()
+        } else {
+            bounds.width()
+        }
+    }
+
+    override fun getIntrinsicHeight(): Int {
+        val bounds = bounds
+        return if (bounds.isEmpty) {
+            super.getIntrinsicHeight()
+        } else {
+            bounds.height()
         }
     }
 
@@ -151,28 +167,6 @@ class ArrowDrawable(arrowList: List<Arrow>) : Drawable() {
 
             // 绘制
             canvas.drawPath(pathBuilder.build(), paint)
-        }
-    }
-
-    override fun getColorFilter(): ColorFilter? = paint.colorFilter
-
-    override fun getOpacity() = PixelFormat.TRANSLUCENT
-
-    override fun getIntrinsicWidth(): Int {
-        val bounds = bounds
-        return if (bounds.isEmpty) {
-            super.getIntrinsicWidth()
-        } else {
-            bounds.width()
-        }
-    }
-
-    override fun getIntrinsicHeight(): Int {
-        val bounds = bounds
-        return if (bounds.isEmpty) {
-            super.getIntrinsicHeight()
-        } else {
-            bounds.height()
         }
     }
 

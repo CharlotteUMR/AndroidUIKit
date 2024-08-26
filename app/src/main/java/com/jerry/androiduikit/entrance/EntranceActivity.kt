@@ -9,6 +9,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.jerry.androiduikit.databinding.ActivityEntranceBinding
 import com.jerry.androiduikit.examples.ArrowDrawableExampleActivity
 import com.jerry.androiduikit.examples.CrossDrawableExampleActivity
+import com.jerry.androiduikit.examples.DotDrawableExampleActivity
 
 class EntranceActivity : AppCompatActivity() {
     companion object {
@@ -16,6 +17,7 @@ class EntranceActivity : AppCompatActivity() {
         val DRAWABLE_DATA_ARRAY = arrayListOf(
             TabFragment.ItemData("ArrowDrawable", ArrowDrawableExampleActivity::class.java),
             TabFragment.ItemData("CrossDrawable", CrossDrawableExampleActivity::class.java),
+            TabFragment.ItemData("DotDrawable", DotDrawableExampleActivity::class.java),
         )
         val VIEW_ARRAY = arrayOf("ExcludePaddingTextView")
     }
