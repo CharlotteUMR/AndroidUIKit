@@ -10,6 +10,7 @@ import com.jerry.uikit.drawables.ArrowDrawable.Direction.Companion.DIRECTION_BOT
 import com.jerry.uikit.drawables.ArrowDrawable.Direction.Companion.DIRECTION_LEFT
 import com.jerry.uikit.drawables.ArrowDrawable.Direction.Companion.DIRECTION_RIGHT
 import com.jerry.uikit.drawables.ArrowDrawable.Direction.Companion.DIRECTION_TOP
+import com.jerry.uikit.extensions.alpha
 import com.jerry.uikit.extensions.clamp
 import com.jerry.uikit.utils.PathUtil
 
@@ -21,29 +22,15 @@ import com.jerry.uikit.utils.PathUtil
  * @author Jerry
  */
 class ArrowDrawable(arrowList: List<Arrow>) : Drawable() {
-    /**
-     * 箭头数组
-     */
     private val arrowList = mutableListOf<Arrow>()
 
-    /**
-     * 画笔
-     */
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-    /**
-     * 覆盖颜色
-     */
     private var overrideColor: Int? = null
+    private var overrideAlpha: Int = 255
 
-    /**
-     * 箭头主体区域
-     */
     private val arrowRectF = RectF()
 
-    /**
-     * 路径构建器
-     */
     private val pathBuilder = PathUtil.getPathBuilder()
 
     constructor(vararg arrows: Arrow) : this(arrows.toList())
@@ -91,13 +78,13 @@ class ArrowDrawable(arrowList: List<Arrow>) : Drawable() {
     }
 
     override fun setAlpha(alpha: Int) {
-        if (paint.alpha != alpha) {
-            paint.alpha = alpha
+        if (overrideAlpha != alpha) {
+            overrideAlpha = alpha
             invalidateSelf()
         }
     }
 
-    override fun getAlpha() = paint.alpha
+    override fun getAlpha() = overrideAlpha
 
     override fun setColorFilter(colorFilter: ColorFilter?) {
         if (paint.colorFilter != colorFilter) {
@@ -131,7 +118,7 @@ class ArrowDrawable(arrowList: List<Arrow>) : Drawable() {
     override fun draw(canvas: Canvas) {
         arrowList.forEach {
             // 设置画笔属性
-            paint.color = overrideColor ?: it.color
+            paint.color = (overrideColor ?: it.color).alpha(overrideAlpha / 255F)
             paint.style = Paint.Style.STROKE
             paint.strokeWidth = it.strokeWidthPx.toFloat()
             paint.strokeCap = it.strokeCap

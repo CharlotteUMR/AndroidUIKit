@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable
 import androidx.annotation.ColorInt
 import androidx.annotation.MainThread
 import androidx.annotation.Px
+import com.jerry.uikit.extensions.alpha
 
 /**
  * 点[Drawable]
@@ -15,20 +16,12 @@ import androidx.annotation.Px
  * @author Jerry
  */
 class DotDrawable(dotList: List<Dot>) : Drawable() {
-    /**
-     * 点数组
-     */
     private val dotList = mutableListOf<Dot>()
 
-    /**
-     * 画笔
-     */
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-    /**
-     * 覆盖颜色
-     */
     private var overrideColor: Int? = null
+    private var overrideAlpha: Int = 255
 
     constructor(vararg dots: Dot) : this(dots.toList())
 
@@ -75,13 +68,13 @@ class DotDrawable(dotList: List<Dot>) : Drawable() {
     }
 
     override fun setAlpha(alpha: Int) {
-        if (paint.alpha != alpha) {
-            paint.alpha = alpha
+        if (overrideAlpha != alpha) {
+            overrideAlpha = alpha
             invalidateSelf()
         }
     }
 
-    override fun getAlpha() = paint.alpha
+    override fun getAlpha() = overrideAlpha
 
     override fun setColorFilter(colorFilter: ColorFilter?) {
         if (paint.colorFilter != colorFilter) {
@@ -116,7 +109,7 @@ class DotDrawable(dotList: List<Dot>) : Drawable() {
         dotList.forEach {
             // 设置画笔属性
             paint.style = Paint.Style.STROKE
-            paint.color = overrideColor ?: it.color
+            paint.color = (overrideColor ?: it.color).alpha(overrideAlpha / 255F)
             paint.strokeWidth = it.dotDiameter.toFloat()
             paint.strokeCap = it.strokeCap
 

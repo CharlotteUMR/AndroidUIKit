@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import androidx.annotation.ColorInt
 import androidx.annotation.MainThread
 import androidx.annotation.Px
+import com.jerry.uikit.extensions.alpha
 
 /**
  * 叉号[Drawable]
@@ -12,24 +13,16 @@ import androidx.annotation.Px
  * @author Jerry
  */
 class CrossDrawable(private val cross: Cross) : Drawable() {
-    /**
-     * 画笔
-     */
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-    /**
-     * 叉号主体区域
-     */
     private val crossRectF = RectF()
 
-    /**
-     * 覆盖颜色
-     */
     private var overrideColor: Int? = null
+    private var overrideAlpha: Int = 255
 
     override fun draw(canvas: Canvas) {
         // 设置画笔属性
-        paint.color = overrideColor ?: cross.color
+        paint.color = (overrideColor ?: cross.color).alpha(overrideAlpha / 255F)
         paint.style = Paint.Style.STROKE
         paint.strokeWidth = cross.strokeWidthPx.toFloat()
         paint.strokeCap = cross.strokeCap
@@ -61,13 +54,13 @@ class CrossDrawable(private val cross: Cross) : Drawable() {
 
     @MainThread
     override fun setAlpha(alpha: Int) {
-        if (paint.alpha != alpha) {
-            paint.alpha = alpha
+        if (overrideAlpha != alpha) {
+            overrideAlpha = alpha
             invalidateSelf()
         }
     }
 
-    override fun getAlpha() = paint.alpha
+    override fun getAlpha() = overrideAlpha
 
     @MainThread
     override fun setColorFilter(colorFilter: ColorFilter?) {
