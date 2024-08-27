@@ -77,9 +77,9 @@ class CrossDrawable(private val cross: Cross) : Drawable() {
         }
     }
 
-    override fun getOpacity(): Int {
-        return PixelFormat.TRANSLUCENT
-    }
+    override fun getColorFilter(): ColorFilter? = paint.colorFilter
+
+    override fun getOpacity() = PixelFormat.TRANSLUCENT
 
     override fun getIntrinsicWidth(): Int {
         val bounds = bounds

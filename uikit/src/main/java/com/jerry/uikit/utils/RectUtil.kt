@@ -6,8 +6,8 @@ import android.graphics.RectF
 import android.util.SizeF
 
 object RectUtil {
-    fun getRectFBuilder(rectF: RectF? = null): RectFBuilder {
-        return RectFBuilder(rectF)
+    fun getRectFBuilder(initialRectF: RectF? = null): RectFBuilder {
+        return RectFBuilder(initialRectF)
     }
 }
 

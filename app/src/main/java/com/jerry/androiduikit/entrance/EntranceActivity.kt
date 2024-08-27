@@ -10,6 +10,7 @@ import com.jerry.androiduikit.databinding.ActivityEntranceBinding
 import com.jerry.androiduikit.examples.ArrowDrawableExampleActivity
 import com.jerry.androiduikit.examples.CrossDrawableExampleActivity
 import com.jerry.androiduikit.examples.DotDrawableExampleActivity
+import com.jerry.androiduikit.examples.ShadowDrawableExampleActivity
 
 class EntranceActivity : AppCompatActivity() {
     companion object {
@@ -18,6 +19,7 @@ class EntranceActivity : AppCompatActivity() {
             TabFragment.ItemData("ArrowDrawable", ArrowDrawableExampleActivity::class.java),
             TabFragment.ItemData("CrossDrawable", CrossDrawableExampleActivity::class.java),
             TabFragment.ItemData("DotDrawable", DotDrawableExampleActivity::class.java),
+            TabFragment.ItemData("ShadowDrawable", ShadowDrawableExampleActivity::class.java)
         )
         val VIEW_ARRAY = arrayOf("ExcludePaddingTextView")
     }

@@ -135,9 +135,9 @@ class DotDrawable(dotList: List<Dot>) : Drawable() {
      * [strokeCap] 点的形状（只有[Paint.Cap.ROUND]是圆的）
      */
     data class Dot @JvmOverloads constructor(
-        @ColorInt var color: Int,
-        @Px var dotDiameter: Int,
-        var position: Pair<Int, Int>,
-        var strokeCap: Paint.Cap = Paint.Cap.ROUND
+        @ColorInt val color: Int,
+        @Px val dotDiameter: Int,
+        val position: Pair<Int, Int>,
+        val strokeCap: Paint.Cap = Paint.Cap.ROUND
     )
 }

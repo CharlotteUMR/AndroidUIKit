@@ -1,29 +1,23 @@
 package com.jerry.uikit.entities
 
-/**
- * [Int]四元数
- */
-data class Quaternion(
-    val value1: Int = 0,
-    val value2: Int = 0,
-    val value3: Int = 0,
-    val value4: Int = 0
-) {
-    constructor(value: Int) : this(value, value, value, value)
+data class Quaternion<T: Number>(
+    val value1: T,
+    val value2: T,
+    val value3: T,
+    val value4: T
+){
+    constructor(value: T) : this(value, value, value, value)
 
-    fun isEmpty() = value1 == 0 && value2 == 0 && value3 == 0 && value4 == 0
-}
+    fun isAllValueSame(): Boolean {
+        return value1 == value2 && value2 == value3 && value3 == value4
+    }
 
-/**
- * [Float]四元数
- */
-data class QuaternionF(
-    val value1: Float = 0F,
-    val value2: Float = 0F,
-    val value3: Float = 0F,
-    val value4: Float = 0F
-) {
-    constructor(value: Float) : this(value, value, value, value)
+    override fun equals(other: Any?): Boolean {
+        if (other is Number) return value1 == other && value2 == other && value3 == other && value4 == other
+        return super.equals(other)
+    }
 
-    fun isEmpty() = value1 == 0F && value2 == 0F && value3 == 0F && value4 == 0F
+    override fun hashCode(): Int {
+        return super.hashCode()
+    }
 }
