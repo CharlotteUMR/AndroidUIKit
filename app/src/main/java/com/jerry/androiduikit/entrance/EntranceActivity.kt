@@ -8,6 +8,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.jerry.androiduikit.databinding.ActivityEntranceBinding
 import com.jerry.androiduikit.examples.ArrowDrawableExampleActivity
+import com.jerry.androiduikit.examples.BubbleDrawableExampleActivity
 import com.jerry.androiduikit.examples.CrossDrawableExampleActivity
 import com.jerry.androiduikit.examples.DotDrawableExampleActivity
 import com.jerry.androiduikit.examples.ShadowDrawableExampleActivity
@@ -19,7 +20,8 @@ class EntranceActivity : AppCompatActivity() {
             TabFragment.ItemData("ArrowDrawable", ArrowDrawableExampleActivity::class.java),
             TabFragment.ItemData("CrossDrawable", CrossDrawableExampleActivity::class.java),
             TabFragment.ItemData("DotDrawable", DotDrawableExampleActivity::class.java),
-            TabFragment.ItemData("ShadowDrawable", ShadowDrawableExampleActivity::class.java)
+            TabFragment.ItemData("ShadowDrawable", ShadowDrawableExampleActivity::class.java),
+            TabFragment.ItemData("BubbleDrawable", BubbleDrawableExampleActivity::class.java),
         )
         val VIEW_ARRAY = arrayOf("ExcludePaddingTextView")
     }

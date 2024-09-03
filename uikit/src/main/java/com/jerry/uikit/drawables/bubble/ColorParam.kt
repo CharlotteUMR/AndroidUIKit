@@ -19,6 +19,7 @@ interface IColorParam
 
 interface IShaderColorParam : IColorParam {
     val shader: Shader?
+    fun buildShader(width: Float, height: Float)
 }
 
 /**
@@ -85,7 +86,7 @@ class GradientColorParam internal constructor(
 
     override var shader: Shader? = null
 
-    fun buildShader(width: Float, height: Float) {
+    override fun buildShader(width: Float, height: Float) {
         shader = when (gradientDirection) {
             TOP_TO_BOTTOM -> {
                 LinearGradient(
@@ -212,4 +213,12 @@ class GradientColorParam internal constructor(
 /**
  * 着色器[Shader]
  */
-class ShaderColorParam(override val shader: Shader) : IShaderColorParam
+open class ShaderColorParam(
+    private val shaderBuilder: (Float, Float) -> Shader
+) : IShaderColorParam {
+    override var shader: Shader? = null
+
+    override fun buildShader(width: Float, height: Float) {
+        shader = shaderBuilder.invoke(width, height)
+    }
+}

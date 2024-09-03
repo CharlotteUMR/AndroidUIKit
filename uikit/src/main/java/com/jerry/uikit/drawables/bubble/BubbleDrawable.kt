@@ -72,40 +72,58 @@ class BubbleDrawable(private val builder: Builder) : Drawable() {
         // 构建箭头
         val arrowPath = if (arrow is IPathArrowParam) {
             buildArrowPath(arrow, reasonableCorner)
-        } else {
-            if (arrow is DrawableArrowParam) {
-                drawArrowDrawable(canvas, arrow, reasonableCorner)
-            }
-            null
-        }
+        } else null
+
+        val mainColor = builder.color
+        // 保存画布为后面染色准备
+        val saveId = if (mainColor is IShaderColorParam) {
+            canvas.saveLayer(0F, 0F, bounds.width().toFloat(), bounds.height().toFloat(), paint)
+        } else null
 
         if (arrowPath != null) {
-            // 有箭头时，将主体和箭头合并
+            // 有箭头路径时，将主体和箭头合并
             mainPath.op(arrowPath, Path.Op.UNION)
+        } else if (arrow is DrawableArrowParam) {
+            // 箭头为Drawable时，单独绘制箭头
+            drawArrowDrawable(canvas, arrow, reasonableCorner)
         }
 
-        when (val colorParam = builder.color) {
-            is IShaderColorParam -> {
-                // 给渐变设置透明度
-                paint.color = 0xFF000000.toInt().alpha(overrideAlpha / 255F)
-                paint.shader = colorParam.shader
-            }
-            is SolidColorParam -> {
-                paint.color = colorParam.color.alpha(overrideAlpha / 255F)
-            }
+        paint.color = when (mainColor) {
+            is SolidColorParam -> mainColor.color.alpha(overrideAlpha / 255F)
+            else -> Color.BLACK.alpha(overrideAlpha / 255F)
         }
         paint.style = Paint.Style.FILL
         canvas.drawPath(mainPath, paint)
 
+        if (mainColor is IShaderColorParam) {
+            // 着色器
+            paint.shader = mainColor.shader
+            paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
+        }
+        if (arrow != null && arrow.applyColor) {
+            // 有箭头并且需要着色，全局染色
+            canvas.drawRect(bounds, paint)
+        } else {
+            // 没有箭头或者不需要着色，只染主体
+            canvas.drawRect(mainRect, paint)
+        }
+        // 还原画笔状态
+        paint.shader = null
+        paint.xfermode = null
+        if (saveId != null) {
+            // 还原画布
+            canvas.restoreToCount(saveId)
+        }
+
         if (stroke != null && arrow is IPathArrowParam) {
             // 需要边线且没有箭头图片时才绘制边线
-            when (val colorParam = stroke.color) {
+            when (val strokeColor = stroke.color) {
                 is IShaderColorParam -> {
                     paint.color = 0xFF000000.toInt().alpha(overrideAlpha / 255F)
-                    paint.shader = colorParam.shader
+                    paint.shader = strokeColor.shader
                 }
                 is SolidColorParam -> {
-                    paint.color = colorParam.color.alpha(overrideAlpha / 255F)
+                    paint.color = strokeColor.color.alpha(overrideAlpha / 255F)
                 }
             }
             paint.strokeWidth = stroke.widthPx.toFloat()
@@ -114,7 +132,11 @@ class BubbleDrawable(private val builder: Builder) : Drawable() {
         }
     }
 
-    private fun drawArrowDrawable(canvas: Canvas, arrow: DrawableArrowParam, corner: Quaternion<Float>) {
+    private fun drawArrowDrawable(
+        canvas: Canvas,
+        arrow: DrawableArrowParam,
+        corner: Quaternion<Float>
+    ) {
         val arrowRect = getArrowRect(arrow, corner)
         arrow.drawable.setBounds(0, 0, arrow.width.toInt(), arrow.height.toInt())
         when (arrow.side) {
@@ -355,6 +377,10 @@ class BubbleDrawable(private val builder: Builder) : Drawable() {
     override fun setAlpha(alpha: Int) {
         if (overrideAlpha != alpha) {
             this.overrideAlpha = alpha
+            val arrow = builder.arrow
+            if (arrow is DrawableArrowParam) {
+                arrow.drawable.alpha = alpha
+            }
             invalidateSelf()
         }
     }
@@ -380,12 +406,12 @@ class BubbleDrawable(private val builder: Builder) : Drawable() {
         super.onBoundsChange(bounds)
 
         val color = builder.color
-        if (color is GradientColorParam) {
+        if (color is IShaderColorParam) {
             color.buildShader(bounds.width().toFloat(), bounds.height().toFloat())
         }
 
         val strokeColor = builder.stroke?.color
-        if (strokeColor is GradientColorParam) {
+        if (strokeColor is IShaderColorParam) {
             strokeColor.buildShader(bounds.width().toFloat(), bounds.height().toFloat())
         }
     }

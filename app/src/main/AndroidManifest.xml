@@ -23,6 +23,9 @@
             android:name=".examples.ShadowDrawableExampleActivity"
             android:exported="false" />
         <activity
+            android:name=".examples.BubbleDrawableExampleActivity"
+            android:exported="false" />
+        <activity
             android:name=".entrance.EntranceActivity"
             android:exported="true">
             <intent-filter>

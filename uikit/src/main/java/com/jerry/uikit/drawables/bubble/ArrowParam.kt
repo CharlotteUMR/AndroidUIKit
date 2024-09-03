@@ -14,24 +14,28 @@ import com.jerry.uikit.utils.PathBuilder
 import com.jerry.uikit.utils.PathUtil
 
 interface IArrowParam {
+    val width: Float
+    val height: Float
     val side: Int
     val anchor: Int
     val offset: Float
-    val width: Float
-    val height: Float
+    val applyColor: Boolean
 }
 
 interface IPathArrowParam : IArrowParam {
     fun buildPath(): Path
 }
 
-class NormalArrowParam(
+class LineArrowParam(
+    override val width: Float,
+    override val height: Float,
     override val side: Int,
     override val anchor: Int,
-    override val offset: Float,
-    override val width: Float,
-    override val height: Float
+    override val offset: Float = 0F,
 ) : IPathArrowParam {
+    override val applyColor: Boolean
+        get() = true
+
     private val pathBuilder = PathUtil.getPathBuilder()
 
     override fun buildPath(): Path {
@@ -42,12 +46,13 @@ class NormalArrowParam(
 }
 
 class DrawableArrowParam(
-    override val side: Int,
-    override val anchor: Int,
-    override val offset: Float,
     override val width: Float,
     override val height: Float,
-    val drawable: Drawable
+    val drawable: Drawable,
+    override val side: Int,
+    override val anchor: Int,
+    override val offset: Float = 0F,
+    override val applyColor: Boolean = true
 ) : IArrowParam
 
 /**
@@ -55,14 +60,17 @@ class DrawableArrowParam(
  *
  * [buildPath] 自定义箭头路径
  */
-class CustomArrowParam(
-    override val side: Int,
-    override val anchor: Int,
-    override val offset: Float,
+class CustomPathArrowParam(
     override val width: Float,
     override val height: Float,
-    val buildPath: (width: Float, height: Float, pathBuilder: PathBuilder) -> Unit
+    override val side: Int,
+    override val anchor: Int,
+    override val offset: Float = 0F,
+    private val buildPath: (width: Float, height: Float, pathBuilder: PathBuilder) -> Unit
 ) : IPathArrowParam {
+    override val applyColor: Boolean
+        get() = true
+
     private val pathBuilder = PathUtil.getPathBuilder()
 
     override fun buildPath(): Path {
