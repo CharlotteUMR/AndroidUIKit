@@ -37,9 +37,16 @@ dependencies {
     implementation(libs.androidx.appcompat)
 }
 
+val publishVersion: String by extra
+val publishGroupId: String by extra
+val publishArtifactId: String by extra
 publishing {
     publications {
         register<MavenPublication>("release") {
+            groupId = publishGroupId
+            artifactId = publishArtifactId
+            version = publishVersion
+
             afterEvaluate {
                 from(components["release"])
             }
