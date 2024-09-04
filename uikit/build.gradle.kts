@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("maven-publish")
+    alias(libs.plugins.mavenPublish)
 }
 android {
     namespace = "com.jerry.uikit"
