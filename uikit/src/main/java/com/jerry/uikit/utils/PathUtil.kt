@@ -100,6 +100,22 @@ class PathBuilder(path: Path? = null) {
         }
     }
 
+    fun addOval(oval: RectF, dir: Path.Direction): PathBuilder {
+        realPath.addOval(oval, dir)
+        return this
+    }
+
+    fun addOval(
+        left: Float,
+        top: Float,
+        right: Float,
+        bottom: Float,
+        dir: Path.Direction
+    ): PathBuilder {
+        realPath.addOval(left, top, right, bottom, dir)
+        return this
+    }
+
     fun op(other: Path, op: Path.Op): PathBuilder {
         realPath.op(other, op)
         return this

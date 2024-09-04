@@ -48,7 +48,7 @@ class LineArrowParam(
 class DrawableArrowParam(
     override val width: Float,
     override val height: Float,
-    val drawable: Drawable,
+    var drawable: Drawable,
     override val side: Int,
     override val anchor: Int,
     override val offset: Float = 0F,

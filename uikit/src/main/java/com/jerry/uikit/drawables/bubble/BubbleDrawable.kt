@@ -47,7 +47,7 @@ class BubbleDrawable(private val builder: Builder) : Drawable() {
         // 根据线宽调整控件和内容区域
         val stroke = builder.stroke
         if (stroke != null) {
-            val halfStrokeWidthPx = stroke.widthPx / 2F
+            val halfStrokeWidthPx = stroke.width / 2F
             mainRect.inset(halfStrokeWidthPx, halfStrokeWidthPx)
         }
 
@@ -99,24 +99,23 @@ class BubbleDrawable(private val builder: Builder) : Drawable() {
             // 着色器
             paint.shader = mainColor.shader
             paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
+            if (arrow != null && arrow.applyColor) {
+                // 有箭头并且需要着色，全局染色
+                canvas.drawRect(bounds, paint)
+            } else {
+                // 没有箭头或者不需要着色，只染主体
+                canvas.drawRect(mainRect, paint)
+            }
+            // 还原画笔状态
+            paint.shader = null
+            paint.xfermode = null
         }
-        if (arrow != null && arrow.applyColor) {
-            // 有箭头并且需要着色，全局染色
-            canvas.drawRect(bounds, paint)
-        } else {
-            // 没有箭头或者不需要着色，只染主体
-            canvas.drawRect(mainRect, paint)
-        }
-        // 还原画笔状态
-        paint.shader = null
-        paint.xfermode = null
         if (saveId != null) {
             // 还原画布
             canvas.restoreToCount(saveId)
         }
 
-        if (stroke != null && arrow is IPathArrowParam) {
-            // 需要边线且没有箭头图片时才绘制边线
+        if (stroke != null) {
             when (val strokeColor = stroke.color) {
                 is IShaderColorParam -> {
                     paint.color = 0xFF000000.toInt().alpha(overrideAlpha / 255F)
@@ -126,7 +125,7 @@ class BubbleDrawable(private val builder: Builder) : Drawable() {
                     paint.color = strokeColor.color.alpha(overrideAlpha / 255F)
                 }
             }
-            paint.strokeWidth = stroke.widthPx.toFloat()
+            paint.strokeWidth = stroke.width
             paint.style = Paint.Style.STROKE
             canvas.drawPath(mainPath, paint)
         }
@@ -379,6 +378,7 @@ class BubbleDrawable(private val builder: Builder) : Drawable() {
             this.overrideAlpha = alpha
             val arrow = builder.arrow
             if (arrow is DrawableArrowParam) {
+                arrow.drawable = arrow.drawable.mutate()
                 arrow.drawable.alpha = alpha
             }
             invalidateSelf()
@@ -392,6 +392,7 @@ class BubbleDrawable(private val builder: Builder) : Drawable() {
             paint.colorFilter = colorFilter
             val arrow = builder.arrow
             if (arrow is DrawableArrowParam) {
+                arrow.drawable = arrow.drawable.mutate()
                 arrow.drawable.colorFilter = colorFilter
             }
             invalidateSelf()
@@ -456,17 +457,14 @@ class BubbleDrawable(private val builder: Builder) : Drawable() {
     }
 
     /**
-     * [widthPx] 线条宽度
+     * [width] 线条宽度
      *
      * [color] 线条颜色
      */
     data class StrokeParam(
-        internal val widthPx: Int = 0,
+        internal val width: Float,
         internal val color: IColorParam
     ) {
-        constructor(widthPx: Int, color: Int) : this(
-            widthPx,
-            SolidColorParam(color)
-        )
+        constructor(width: Float, color: Int) : this(width, SolidColorParam(color))
     }
 }

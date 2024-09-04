@@ -9,24 +9,26 @@
     tools:context=".examples.ArrowDrawableExampleActivity"
     tools:ignore="HardcodedText">
 
-    <ImageView
+    <View
         android:id="@+id/bubble_example_view_1"
         android:layout_width="150dp"
-        android:layout_height="80dp"
-        android:background="#8F8"/>
+        android:layout_height="80dp" />
 
     <View
         android:id="@+id/bubble_example_view_2"
         android:layout_width="150dp"
-        android:layout_height="80dp" />
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp" />
 
     <View
         android:id="@+id/bubble_example_view_3"
         android:layout_width="150dp"
-        android:layout_height="80dp" />
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp" />
 
     <View
         android:id="@+id/bubble_example_view_4"
         android:layout_width="150dp"
-        android:layout_height="80dp" />
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp" />
 </LinearLayout>
