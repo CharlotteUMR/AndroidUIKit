@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RoundImageView">
+        <!-- 圆角大小 -->
+        <attr name="riv_corner_size" format="dimension" />
+        <!-- 左上角圆角大小 -->
+        <attr name="riv_left_top_corner_size" format="dimension" />
+        <!-- 右上角圆角大小 -->
+        <attr name="riv_right_top_corner_size" format="dimension" />
+        <!-- 左下角圆角大小 -->
+        <attr name="riv_left_bottom_corner_size" format="dimension" />
+        <!-- 右下角圆角大小 -->
+        <attr name="riv_right_bottom_corner_size" format="dimension" />
+    </declare-styleable>
+</resources>

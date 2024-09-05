@@ -11,19 +11,22 @@ import com.jerry.androiduikit.examples.ArrowDrawableExampleActivity
 import com.jerry.androiduikit.examples.BubbleDrawableExampleActivity
 import com.jerry.androiduikit.examples.CrossDrawableExampleActivity
 import com.jerry.androiduikit.examples.DotDrawableExampleActivity
+import com.jerry.androiduikit.examples.RoundImageViewExampleActivity
 import com.jerry.androiduikit.examples.ShadowDrawableExampleActivity
 
 class EntranceActivity : AppCompatActivity() {
     companion object {
         val TAB_TITLE_ARRAY = arrayOf("Drawable", "View")
-        val DRAWABLE_DATA_ARRAY = arrayListOf(
+        val DRAWABLE_ARRAY = arrayListOf(
             TabFragment.ItemData("ArrowDrawable", ArrowDrawableExampleActivity::class.java),
             TabFragment.ItemData("CrossDrawable", CrossDrawableExampleActivity::class.java),
             TabFragment.ItemData("DotDrawable", DotDrawableExampleActivity::class.java),
             TabFragment.ItemData("ShadowDrawable", ShadowDrawableExampleActivity::class.java),
             TabFragment.ItemData("BubbleDrawable", BubbleDrawableExampleActivity::class.java),
         )
-        val VIEW_ARRAY = arrayOf("ExcludePaddingTextView")
+        val VIEW_ARRAY = arrayListOf(
+            TabFragment.ItemData("RoundImageView", RoundImageViewExampleActivity::class.java),
+        )
     }
 
     private lateinit var binding: ActivityEntranceBinding
@@ -42,7 +45,8 @@ class EntranceActivity : AppCompatActivity() {
                 override fun createFragment(position: Int): Fragment {
                     return TabFragment.newInstance(
                         when (position) {
-                            0 -> DRAWABLE_DATA_ARRAY
+                            0 -> DRAWABLE_ARRAY
+                            1 -> VIEW_ARRAY
                             else -> arrayListOf()
                         }
                     )

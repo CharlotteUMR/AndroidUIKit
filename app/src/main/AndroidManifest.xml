@@ -26,6 +26,9 @@
             android:name=".examples.BubbleDrawableExampleActivity"
             android:exported="false" />
         <activity
+            android:name=".examples.RoundImageViewExampleActivity"
+            android:exported="false" />
+        <activity
             android:name=".entrance.EntranceActivity"
             android:exported="true">
             <intent-filter>
