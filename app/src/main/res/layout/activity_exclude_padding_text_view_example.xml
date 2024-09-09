@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <com.jerry.uikit.views.ExcludePaddingTextView
+        android:id="@+id/exclude_padding_example_tv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="分段上看见了附近的时刻sjkflds1"
+        android:textSize="50px"
+        app:eptv_is_debug="true" />
+
+    <com.jerry.uikit.views.ExcludePaddingTextView
+        android:id="@+id/exclude_padding_example_tv_2"
+        android:includeFontPadding="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="分段上看见了附近的时刻sjkflds1"
+        android:textSize="50px"
+        android:layout_marginTop="10dp"
+        app:eptv_is_debug="true" />
+</LinearLayout>

@@ -11,6 +11,7 @@ import com.jerry.androiduikit.examples.ArrowDrawableExampleActivity
 import com.jerry.androiduikit.examples.BubbleDrawableExampleActivity
 import com.jerry.androiduikit.examples.CrossDrawableExampleActivity
 import com.jerry.androiduikit.examples.DotDrawableExampleActivity
+import com.jerry.androiduikit.examples.ExcludePaddingTextViewExampleActivity
 import com.jerry.androiduikit.examples.RoundImageViewExampleActivity
 import com.jerry.androiduikit.examples.ShadowDrawableExampleActivity
 
@@ -26,6 +27,10 @@ class EntranceActivity : AppCompatActivity() {
         )
         val VIEW_ARRAY = arrayListOf(
             TabFragment.ItemData("RoundImageView", RoundImageViewExampleActivity::class.java),
+            TabFragment.ItemData(
+                "ExcludePaddingTextView",
+                ExcludePaddingTextViewExampleActivity::class.java
+            ),
         )
     }
 

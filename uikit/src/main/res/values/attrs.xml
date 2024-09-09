@@ -12,4 +12,8 @@
         <!-- 右下角圆角大小 -->
         <attr name="riv_right_bottom_corner_size" format="dimension" />
     </declare-styleable>
+    <declare-styleable name="ExcludePaddingTextView">
+        <!-- 是否是调试模式 -->
+        <attr name="eptv_is_debug" format="boolean" />
+    </declare-styleable>
 </resources>

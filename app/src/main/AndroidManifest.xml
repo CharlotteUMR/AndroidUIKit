@@ -29,6 +29,9 @@
             android:name=".examples.RoundImageViewExampleActivity"
             android:exported="false" />
         <activity
+            android:name=".examples.ExcludePaddingTextViewExampleActivity"
+            android:exported="false" />
+        <activity
             android:name=".entrance.EntranceActivity"
             android:exported="true">
             <intent-filter>
