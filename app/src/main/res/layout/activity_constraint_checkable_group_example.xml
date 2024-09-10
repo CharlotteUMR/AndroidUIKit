@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".examples.ConstraintCheckableGroupExampleActivity"
+    tools:ignore="HardcodedText,MissingConstraints">
+
+    <com.jerry.uikit.views.ConstraintCheckableGroup
+        android:id="@+id/checkable_group_example_cg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="checkable_group_example_rb_1, checkable_group_example_rb_2, checkable_group_example_rb_3, checkable_group_example_rb_4" />
+
+    <RadioButton
+        android:id="@+id/checkable_group_example_rb_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选项1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/checkable_group_example_rb_2"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <RadioButton
+        android:id="@+id/checkable_group_example_rb_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选项2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/checkable_group_example_rb_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/checkable_group_example_rb_3" />
+
+    <RadioButton
+        android:id="@+id/checkable_group_example_rb_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选项3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/checkable_group_example_rb_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/checkable_group_example_rb_4" />
+
+    <RadioButton
+        android:id="@+id/checkable_group_example_rb_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选项4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/checkable_group_example_rb_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

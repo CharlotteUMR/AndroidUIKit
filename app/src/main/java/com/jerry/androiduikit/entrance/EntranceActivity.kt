@@ -9,6 +9,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.jerry.androiduikit.databinding.ActivityEntranceBinding
 import com.jerry.androiduikit.examples.ArrowDrawableExampleActivity
 import com.jerry.androiduikit.examples.BubbleDrawableExampleActivity
+import com.jerry.androiduikit.examples.ConstraintCheckableGroupExampleActivity
 import com.jerry.androiduikit.examples.CrossDrawableExampleActivity
 import com.jerry.androiduikit.examples.DotDrawableExampleActivity
 import com.jerry.androiduikit.examples.ExcludePaddingTextViewExampleActivity
@@ -30,6 +31,10 @@ class EntranceActivity : AppCompatActivity() {
             TabFragment.ItemData(
                 "ExcludePaddingTextView",
                 ExcludePaddingTextViewExampleActivity::class.java
+            ),
+            TabFragment.ItemData(
+                "ConstraintCheckableGroup",
+                ConstraintCheckableGroupExampleActivity::class.java
             ),
         )
     }
